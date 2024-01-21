@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "demo dibimbing mlops"
+version = "0.1.0"
+description = ""
+authors = ["fajarmuslim <fajarmuslimfjr@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+fastapi = "^0.74.1"
+pydantic = {extras = ["dotenv"], version = "^1.9.0"}
+uvicorn = "^0.17.5"
+numpy = "^1.23.3"
+joblib = "^1.2.0"
+scikit-learn = "1.1.2"
+pendulum = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+taskipy = "^1.10.1"
+pytest = "^7.0.1"
+pytest-cov = "^3.0.0"
+pytest-mock = "^3.8.2"
+pre-commit = "^2.19.0"
+
+[tool.taskipy.tasks]
+test = {cmd = 'coverage run -m pytest && coverage report -m && coverage xml', help='run all unit tests'}
+app = {cmd = 'uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload', help='run emotion service'}
+
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
