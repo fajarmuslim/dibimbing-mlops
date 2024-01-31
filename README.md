@@ -30,7 +30,7 @@
 
 3. Run docker image as container
    ```
-   docker run -d --name iris-api-container -p 1234:8001 iris-api:v1.0.0
+   docker run -d --name iris-api-container -p 8001:8001 iris-api:v1.0.0
    ```
    This command will run the docker container with our named image `iris-api` that have `v1.0.0-rc1` version.
    The running container will run as container with name `iris-api-container` and running on port `1234`.

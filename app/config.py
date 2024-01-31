@@ -4,7 +4,7 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    cors_origins: str
+    cors_origins: str = "*"
 
     class Config:
         env_file = ".env"
