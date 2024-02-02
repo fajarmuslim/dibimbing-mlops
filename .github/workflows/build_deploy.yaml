@@ -61,7 +61,7 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
           echo POSTGRES_SCHEMA=${{ secrets.POSTGRES_SCHEMA }} >> .env
-          echo SQLALCHEMY_DATABASE_CONNECT_TIMEZONE="Asia/Jakarta" >> .env
+          echo SQLALCHEMY_DATABASE_CONNECT_TIMEZONE=Asia/Jakarta >> .env
 
       - name: Run test
         run: pip freeze && poetry run task test
