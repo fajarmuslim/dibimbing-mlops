@@ -1,5 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
+from app.dependencies.db import get_db
 from app.schemas.iris import IrisBatchRequest, IrisBatchResponse
 from app.services.iris import IrisPredictor
 
@@ -12,5 +14,5 @@ iris_predictor = IrisPredictor()
     response_model=IrisBatchResponse,
     name="POST batch iris",
 )
-def iris_prediction(request: IrisBatchRequest):
-    return iris_predictor.predict(features=request.features)
+def iris_prediction(request: IrisBatchRequest, db: Session = Depends(get_db)):
+    return iris_predictor.predict(db=db, features=request.features)
