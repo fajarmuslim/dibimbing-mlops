@@ -12,7 +12,6 @@ class Settings(BaseSettings):
     postgres_password: str
     postgres_db: str
     postgres_schema: str
-    postgres_schema_test: str
     sqlalchemy_database_connect_timezone: str
 
     @validator("sqlalchemy_database_uri")
