@@ -4,9 +4,7 @@ from fastapi import status
 from fastapi.testclient import TestClient
 
 
-def test_iris(
-    client: TestClient,
-) -> None:
+def test_iris(client: TestClient, override_db) -> None:
     data = {
         "features": [
             {
