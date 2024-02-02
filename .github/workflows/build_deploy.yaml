@@ -52,6 +52,18 @@ jobs:
         run: poetry install
         if: steps.cache.outputs.cache-hit != 'true'
 
+      - name: Create .env file
+        run: cat <<EOT >> .env \
+          CORS_ORIGINS=${{ secrets.CORS_ORIGINS }} \
+          POSTGRES_DB=${{ secrets.POSTGRES_DB }} \
+          POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} \
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} \
+          POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} \
+          POSTGRES_USER=${{ secrets.POSTGRES_USER }} \
+          POSTGRES_SCHEMA=${{ secrets.POSTGRES_SCHEMA }} \
+          SQLALCHEMY_DATABASE_CONNECT_TIMEZONE=Asia/Jakarta \
+          EOT
+
       - name: Run test
         run: pip freeze && poetry run task test
 
